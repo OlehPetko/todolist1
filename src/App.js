@@ -1,5 +1,7 @@
 import {useState} from 'react'
 import List from "./List";
+import {Container, Row, Col} from "reactstrap";
+import Controller from "./Controller";
 
 function App() {
     const [list, setList] = useState([
@@ -8,15 +10,13 @@ function App() {
         {id: Math.random(), title: 'learn java', done: false},
         {id: Math.random(), title: 'learn vui', done: false}
     ])
-    const [inputValue, setInputValue] = useState('')
-    const onChange = (e) => {
-        setInputValue(e.target.value)
-    }
-    const addTitle = () => {
-        const newList = {id: Math.random(), title: inputValue, done: false}
+
+
+    const addTitle = (newTitle, newStatus) => {
+        const newList = {id: Math.random(), title: newTitle, done: newStatus}
         const newTodo = [...list, newList]
         setList(newTodo)
-        setInputValue('')
+
     }
     const del = (id) => {
         const newList = list.filter(el => el.id !== id)
@@ -49,13 +49,14 @@ function App() {
         setList(newList)
     }
     return (
-        <div>
-            <input placeholder='read here' value={inputValue} onChange={onChange}/>
-            <button onClick={addTitle}>add</button>
+        <Container>
+            <Row>
+                <Col>
+                    <Controller addTitle={addTitle} />
+                </Col>
             <List list={list} del={del} doneTodo={doneTodo} moveUp={moveUp} editTodo={editTodo} />
-
-
-        </div>
+            </Row>
+        </Container>
     );
 }
 

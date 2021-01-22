@@ -1,9 +1,10 @@
 import Todo from "./Todo";
+import {Col} from "reactstrap";
 
 function List(props) {
     const {list = []} = props
     return (
-        <div>
+        <Col xs={8}>
             {list.map((el, index) => <Todo todo={el}
                                            key={el.id}
                                            del={props.del}
@@ -17,7 +18,7 @@ function List(props) {
             /> )}
 
 
-        </div>
+        </Col>
     );
 }
 
