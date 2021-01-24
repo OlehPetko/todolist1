@@ -5,14 +5,13 @@ import Controller from "./Controller";
 
 function App() {
     const [list, setList] = useState([
-        {id: Math.random(), title: 'learn react', done: false},
-        {id: Math.random(), title: 'learn js', done: false},
-        {id: Math.random(), title: 'learn java', done: false},
-        {id: Math.random(), title: 'learn vui', done: false}
+        // {id: Math.random(), title: 'learn react', done: false},
+        // {id: Math.random(), title: 'learn js', done: false},
+        // {id: Math.random(), title: 'learn java', done: false},
+        // {id: Math.random(), title: 'learn vui', done: false}
     ])
-
-
     const addTitle = (newTitle, newStatus) => {
+        newStatus = newStatus === 'true'
         const newList = {id: Math.random(), title: newTitle, done: newStatus}
         const newTodo = [...list, newList]
         setList(newTodo)
@@ -35,14 +34,16 @@ function App() {
         const newList = [...list]
         const indexTodo = newList[index]
         const prevTodo = newList[nextIndex]
-        newList[index]=prevTodo
-        newList[nextIndex]=indexTodo
+        newList[index] = prevTodo
+        newList[nextIndex] = indexTodo
         setList(newList)
     }
-    const editTodo = (id, newTitle) => {
+    const editTodo = (id, newTitle, newStatus) => {
+        newStatus = newStatus === 'true'
         const newList = list.map(el => {
-            if(el.id === id) {
+            if (el.id === id) {
                 el.title = newTitle
+                el.done = newStatus
             }
             return el
         })
@@ -52,9 +53,9 @@ function App() {
         <Container>
             <Row>
                 <Col>
-                    <Controller addTitle={addTitle} />
+                    <Controller addTitle={addTitle}/>
                 </Col>
-            <List list={list} del={del} doneTodo={doneTodo} moveUp={moveUp} editTodo={editTodo} />
+                <List list={list} del={del} doneTodo={doneTodo} moveUp={moveUp} editTodo={editTodo}/>
             </Row>
         </Container>
     );

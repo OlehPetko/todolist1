@@ -15,9 +15,7 @@ function List(props) {
                                            index={index}
                                            isLast={index === list.length - 1}
 
-            /> )}
-
-
+            />)}
         </Col>
     );
 }

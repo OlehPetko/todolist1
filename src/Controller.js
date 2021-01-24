@@ -9,7 +9,6 @@ function Controller(props) {
         <Col>
             <Button onClick={() => setIsModalOpen(true)}>Add new</Button>
             <ModalAddTodo isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} addTitle={props.addTitle}/>
-
         </Col>
     );
 }
